@@ -6,6 +6,7 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
+  signOut,
 } from "firebase/auth";
 import { auth } from "../fireBaseConfiq/fireBaseConfiq";
 
@@ -25,6 +26,10 @@ const AuthProvider = ({ children }) => {
   const signInUser = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
+
+  const logOut = () => {
+    return signOut(auth);
+  };
   // UserManage
 
   useEffect(() => {
@@ -35,7 +40,16 @@ const AuthProvider = ({ children }) => {
     });
     return unsubsCribe;
   }, []);
-  const value = { user, loadding, setUser, signInUser, createUser, signInUser };
+  const value = {
+    user,
+    loadding,
+    setUser,
+    signInUser,
+    createUser,
+    googleSignIn,
+    logOut,
+    signOut,
+  };
   return <AuthContext value={value}>{children}</AuthContext>;
 };
 
