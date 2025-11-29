@@ -1,56 +1,64 @@
-import React from "react";
 import { Link } from "react-router";
 
 const LogIn = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const email = e.target.Email.value;
+    const password = e.target.password.value;
+    const userInfo = { email, password };
+    console.log(userInfo);
+  };
   return (
     <div>
-      <form class="max-w-sm mx-auto bg-amber-50 shadow-2xl p-5 my-3 rounded-2xl">
-        <h2 className="3xl font-semibold  border-b border-gray-300 text-success">
-          Log In
-        </h2>
-        <div class="mb-5">
-          <label
-            for="email-alternative"
-            class="block mb-2.5 text-sm font-medium text-heading"
-          >
-            Your email
-          </label>
-          <input
-            name="Email"
-            type="email"
-            id="email-alternative"
-            class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow placeholder:text-body"
-            placeholder="name@flowbite.com"
-            required
-          />
-        </div>
-        <div class="mb-5">
-          <label
-            for="password-alternative"
-            class="block mb-2.5 text-sm font-medium text-heading"
-          >
-            Your password
-          </label>
-          <input
-            name="password"
-            type="password"
-            id="password-alternative"
-            class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow placeholder:text-body"
-            placeholder="••••••••"
-            required
-          />
-        </div>
+      <div className="max-w-sm mx-auto  bg-amber-50 shadow-2xl p-5 my-3 rounded-2xl">
+        <form onSubmit={handleLogin}>
+          <h2 className="3xl font-semibold  border-b border-gray-300 text-success">
+            Log In
+          </h2>
+          <div class="mb-5">
+            <label
+              for="email-alternative"
+              class="block mb-2.5 text-sm font-medium text-heading"
+            >
+              Your email
+            </label>
+            <input
+              name="Email"
+              type="email"
+              id="email-alternative"
+              class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow placeholder:text-body"
+              placeholder="name@flowbite.com"
+              required
+            />
+          </div>
+          <div class="mb-5">
+            <label
+              for="password-alternative"
+              class="block mb-2.5 text-sm font-medium text-heading"
+            >
+              Your password
+            </label>
+            <input
+              name="password"
+              type="password"
+              id="password-alternative"
+              class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow placeholder:text-body"
+              placeholder="••••••••"
+              required
+            />
+          </div>
 
-        <button
-          type="submit"
-          class="box-border w-full btn btn-outline text-[16px] font-semibold btn-success hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs  leading-5 rounded-base  px-4 py-2.5 focus:outline-none"
-        >
-          Submit
-        </button>
-        <p className="flex justify-center">
-          {" "}
-          <span className="text-center">------ or ------</span>
-        </p>
+          <button
+            type="submit"
+            class="box-border w-full btn btn-outline text-[16px] font-semibold btn-success hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs  leading-5 rounded-base  px-4 py-2.5 focus:outline-none"
+          >
+            Submit
+          </button>
+          <p className="flex justify-center">
+            {" "}
+            <span className="text-center">------ or ------</span>
+          </p>
+        </form>
         <button className="btn bg-white w-full text-black border-[#e5e5e5]">
           <svg
             aria-label="Google logo"
@@ -87,7 +95,7 @@ const LogIn = () => {
             Register Now
           </Link>
         </p>
-      </form>
+      </div>
     </div>
   );
 };
