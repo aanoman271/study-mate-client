@@ -1,8 +1,9 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import useAuth from "../hook/useAuth";
 import useSwal from "../hook/useSwal";
 
 const Register = () => {
+  const navigate = useNavigate();
   const { success, error } = useSwal();
   const { createUser, setUser, user } = useAuth();
   console.log(user);
@@ -12,11 +13,19 @@ const Register = () => {
     const photo = e.target.photo.value;
     const email = e.target.Email.value;
     const password = e.target.password.value;
-    console.log(name, photo, email, password);
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+    if (!passwordRegex.test(password)) {
+      error(
+        "Password must have 1 uppercase, 1 lowercase & minimum 6 characters"
+      );
+      return;
+    }
     await createUser(email, password, name, photo)
       .then((newUser) => {
         setUser(newUser);
+        navigate("/");
         success("Welcome!", "Account created successfully");
+        e.target.reset();
       })
       .catch((err) => {
         error(err.message);
