@@ -1,12 +1,23 @@
 import { Link } from "react-router";
+import useAuth from "../hook/useAuth";
+import { auth } from "../fireBaseConfiq/fireBaseConfiq";
+import useSwal from "../hook/useSwal";
 
 const LogIn = () => {
+  const { success, error } = useSwal();
+  const { signInUser, setUser } = useAuth();
   const handleLogin = (e) => {
     e.preventDefault();
     const email = e.target.Email.value;
     const password = e.target.password.value;
-    const userInfo = { email, password };
-    console.log(userInfo);
+    signInUser(auth, email, password)
+      .then((userCredential) => {
+        setUser(userCredential);
+        success("Succcesfully Logedin");
+      })
+      .catch((err) => {
+        error(err.message);
+      });
   };
   return (
     <div>

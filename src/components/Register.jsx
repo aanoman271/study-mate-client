@@ -1,14 +1,26 @@
-import React from "react";
 import { Link } from "react-router";
+import useAuth from "../hook/useAuth";
+import useSwal from "../hook/useSwal";
 
 const Register = () => {
-  const HandleRegister = (e) => {
+  const { success, error } = useSwal();
+  const { createUser, setUser, user } = useAuth();
+  console.log(user);
+  const HandleRegister = async (e) => {
     e.preventDefault();
     const name = e.target.Name.value;
     const photo = e.target.photo.value;
     const email = e.target.Email.value;
     const password = e.target.password.value;
     console.log(name, photo, email, password);
+    await createUser(email, password, name, photo)
+      .then((newUser) => {
+        setUser(newUser);
+        success("Welcome!", "Account created successfully");
+      })
+      .catch((err) => {
+        error(err.message);
+      });
   };
   return (
     <div>

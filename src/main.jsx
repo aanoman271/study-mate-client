@@ -8,6 +8,7 @@ import FindParthner from "./components/FindParthner.jsx";
 import CreatePartner from "./components/CreatePartner.jsx";
 import Register from "./components/Register.jsx";
 import LogIn from "./components/LogIn.jsx";
+import AuthProvider from "./Context/AuthProvider.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -35,6 +36,8 @@ const router = createBrowserRouter([
 ]);
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />,
+    <AuthProvider>
+      <RouterProvider router={router} />,
+    </AuthProvider>
   </StrictMode>
 );

@@ -7,21 +7,37 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../fireBaseConfiq/fireBaseConfiq";
 
 const AuthProvider = ({ children }) => {
-  const provider = new GoogleAuthProvider();
   const [user, setUser] = useState(null);
   const [loadding, setloadding] = useState(true);
+  const provider = new GoogleAuthProvider();
+
   // signIn with Google
   const googleSignIn = () => {
     signInWithPopup(auth, provider);
   };
   // create user with email
-  const createUser = (email, password) => {
-    return createUserWithEmailAndPassword(auth, email, password);
+  const createUser = async (email, password, name, photoURL) => {
+    const result = await createUserWithEmailAndPassword(auth, email, password);
+    const user = result.user;
+    await updateProfile(user, {
+      displayName: name,
+      photoURL: photoURL,
+    });
+    setUser({ ...user });
+    setloadding(true);
+    return result;
   };
+  // update
+  // const updateProfile = (user, userName, photoURL);
+  // updateProfile(user, {
+  //   displayName: userName,
+  //   photoURL: photoURL,
+  // });
   // signin with email
   const signInUser = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
@@ -30,6 +46,7 @@ const AuthProvider = ({ children }) => {
   const logOut = () => {
     return signOut(auth);
   };
+
   // UserManage
 
   useEffect(() => {
@@ -38,9 +55,9 @@ const AuthProvider = ({ children }) => {
       setloadding(false);
       console.log("current userInfo", currentUser || "empty");
     });
-    return unsubsCribe;
+    return () => unsubsCribe;
   }, []);
-  const value = {
+  const authInfo = {
     user,
     loadding,
     setUser,
@@ -50,7 +67,9 @@ const AuthProvider = ({ children }) => {
     logOut,
     signOut,
   };
-  return <AuthContext value={value}>{children}</AuthContext>;
+  return (
+    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+  );
 };
 
 export default AuthProvider;
