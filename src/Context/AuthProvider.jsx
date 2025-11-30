@@ -18,7 +18,8 @@ const AuthProvider = ({ children }) => {
 
   // signIn with Google
   const googleSignIn = () => {
-    signInWithPopup(auth, provider);
+    setloadding(true);
+    return signInWithPopup(auth, provider);
   };
   // create user with email
   const createUser = async (email, password, name, photoURL) => {
@@ -65,7 +66,6 @@ const AuthProvider = ({ children }) => {
     createUser,
     googleSignIn,
     logOut,
-    signOut,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

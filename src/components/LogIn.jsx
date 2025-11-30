@@ -1,19 +1,31 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import useAuth from "../hook/useAuth";
-import { auth } from "../fireBaseConfiq/fireBaseConfiq";
 import useSwal from "../hook/useSwal";
 
 const LogIn = () => {
   const { success, error } = useSwal();
-  const { signInUser, setUser } = useAuth();
+  const { signInUser, setUser, googleSignIn } = useAuth();
+  const navigate = useNavigate();
+  const hangleGoogleSignUp = () => {
+    googleSignIn()
+      .then(() => {
+        navigate("/");
+
+        success("Welcome!");
+      })
+      .catch((err) => {
+        error(err.message);
+      });
+  };
   const handleLogin = (e) => {
     e.preventDefault();
     const email = e.target.Email.value;
     const password = e.target.password.value;
-    signInUser(auth, email, password)
+    signInUser(email, password)
       .then((userCredential) => {
-        setUser(userCredential);
         success("Succcesfully Logedin");
+        navigate("/");
+        setUser(userCredential);
       })
       .catch((err) => {
         error(err.message);
@@ -70,7 +82,10 @@ const LogIn = () => {
             <span className="text-center">------ or ------</span>
           </p>
         </form>
-        <button className="btn bg-white w-full text-black border-[#e5e5e5]">
+        <button
+          onClick={hangleGoogleSignUp}
+          className="btn bg-white w-full text-black border-[#e5e5e5]"
+        >
           <svg
             aria-label="Google logo"
             width="16"

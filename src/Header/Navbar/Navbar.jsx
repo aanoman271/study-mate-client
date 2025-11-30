@@ -1,8 +1,24 @@
 import React from "react";
 import Logo from "../../components/Logo";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
+import useAuth from "../../hook/useAuth";
+import useSwal from "../../hook/useSwal";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const { user, logOut } = useAuth();
+  const { success, error } = useSwal();
+
+  const handleSignOut = () => {
+    logOut()
+      .then(() => {
+        success("Sign Out successfull");
+        navigate("/");
+      })
+      .catch((err) => {
+        error(err.message);
+      });
+  };
   const navLink = (
     <>
       <li>
@@ -25,26 +41,32 @@ const Navbar = () => {
           Find Partner
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          className={({ isActive }) =>
-            isActive ? "underline  font-semibold" : "hover:underline"
-          }
-          to="/createPartnerProfile"
-        >
-          Create Partner Profile
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          className={({ isActive }) =>
-            isActive ? "underline  font-semibold" : "hover:underline"
-          }
-          to="/"
-        >
-          blaaaaaaa
-        </NavLink>
-      </li>
+      {user ? (
+        <>
+          <li>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "underline  font-semibold" : "hover:underline"
+              }
+              to="/createPartnerProfile"
+            >
+              Create Partner Profile
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "underline  font-semibold" : "hover:underline"
+              }
+              to="/"
+            >
+              blaaaaaaa
+            </NavLink>
+          </li>
+        </>
+      ) : (
+        ""
+      )}
     </>
   );
   return (
@@ -83,7 +105,39 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        <div className="dropdown dropdown-bottom bg-white  dropdown-end">
+          <div tabIndex={0} role="button" className="btn m-1">
+            <img
+              className="w-10 h-10 rounded-full"
+              src={
+                user?.photoURL ||
+                "/src/assets/istockphoto-1223671392-2048x2048.jpg"
+              }
+              alt=""
+            />{" "}
+            ⬇️
+          </div>
+          <ul
+            tabIndex="-1"
+            className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
+          >
+            {user ? (
+              <>
+                {" "}
+                <li>
+                  <NavLink to="/">Profile</NavLink>
+                </li>
+                <li onClick={handleSignOut}>
+                  <a>Log Out</a>
+                </li>
+              </>
+            ) : (
+              <li className="text-red-500">
+                You have to Register or LogIn First to see your profile
+              </li>
+            )}
+          </ul>
+        </div>
       </div>
       {/* menu  */}
     </div>

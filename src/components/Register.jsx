@@ -1,12 +1,22 @@
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hook/useAuth";
 import useSwal from "../hook/useSwal";
 
 const Register = () => {
   const navigate = useNavigate();
   const { success, error } = useSwal();
-  const { createUser, setUser, user } = useAuth();
-  console.log(user);
+  const { createUser, googleSignIn, setUser } = useAuth();
+  const hangleGoogleSignUp = () => {
+    googleSignIn()
+      .then(() => {
+        navigate("/");
+
+        success("Welcome!");
+      })
+      .catch((err) => {
+        error(err.message);
+      });
+  };
   const HandleRegister = async (e) => {
     e.preventDefault();
     const name = e.target.Name.value;
@@ -104,7 +114,10 @@ const Register = () => {
             <span className="text-center">------ or ------</span>
           </p>
         </form>
-        <button className="btn bg-white w-full text-black border-[#e5e5e5]">
+        <button
+          onClick={hangleGoogleSignUp}
+          className="btn bg-white w-full text-black border-[#e5e5e5]"
+        >
           <svg
             aria-label="Google logo"
             width="16"
