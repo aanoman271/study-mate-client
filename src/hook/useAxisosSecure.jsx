@@ -8,6 +8,7 @@ const useAxisosSecure = () => {
     if (user?.accessToken) {
       confiq.headers.Authorization = `Bearer ${user.accessToken}`;
       console.log(confiq);
+      return confiq;
     }
   });
 

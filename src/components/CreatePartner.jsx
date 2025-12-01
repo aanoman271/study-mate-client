@@ -1,8 +1,10 @@
 import React from "react";
 import useAuth from "../hook/useAuth";
+import useAxisosSecure from "../hook/useAxisosSecure";
 
 const CreatePartner = () => {
   const { user } = useAuth();
+  const axiosSecure = useAxisosSecure();
 
   const handlePartner = (e) => {
     e.preventDefault();
@@ -14,30 +16,25 @@ const CreatePartner = () => {
     const location = e.target.location.value;
     const expriance = e.target.expriance.value;
     console.log(name, email, subject, mode, time, location, expriance);
+    const newPartner = {
+      name: name,
+      profileImg: user?.photoURL,
+      subject,
+      mode,
+      time,
+      location,
+      expriance,
+    };
+    axiosSecure.post("/partners", newPartner).then((data) => {
+      console.log("clint", data.data);
+    });
   };
   return (
     <div class="max-w-2xl mx-auto p-6 bg-white rounded-2xl shadow-xl mt-10 font-sans">
       <h2 class="text-3xl font-bold text-center text-gray-800 mb-10">
         Create Your Tutor Profile
       </h2>
-
       <form onSubmit={handlePartner} class="space-y-8">
-        <div class="flex flex-col items-center">
-          <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-indigo-600 shadow-lg mb-5">
-            <img
-              src="https://i.ibb.co/profile-example.jpg"
-              alt="Profile"
-              class="w-full h-full object-cover"
-            />
-          </div>
-          <button
-            type="button"
-            class="bg-indigo-600 text-white px-8 py-3 rounded-full hover:bg-indigo-700 transition text-sm font-medium"
-          >
-            Upload Photo
-          </button>
-        </div>
-
         <div>
           <label class="block text-sm font-medium text-gray-700 mb-2">
             Full Name
