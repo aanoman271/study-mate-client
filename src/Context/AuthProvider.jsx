@@ -14,6 +14,7 @@ import { auth } from "../fireBaseConfiq/fireBaseConfiq";
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loadding, setloadding] = useState(true);
+  const [partnerData, setPartnerData] = useState([]);
   const provider = new GoogleAuthProvider();
 
   // signIn with Google
@@ -61,6 +62,9 @@ const AuthProvider = ({ children }) => {
   const authInfo = {
     user,
     loadding,
+    setloadding,
+    partnerData,
+    setPartnerData,
     setUser,
     signInUser,
     createUser,

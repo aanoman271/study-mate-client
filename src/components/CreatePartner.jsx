@@ -1,12 +1,16 @@
 import React from "react";
 import useAuth from "../hook/useAuth";
 import useAxisosSecure from "../hook/useAxisosSecure";
+import useSwal from "../hook/useSwal";
+import { useNavigate } from "react-router";
 
 const CreatePartner = () => {
   const { user } = useAuth();
   const axiosSecure = useAxisosSecure();
+  const { success, error } = useSwal();
+  const navigate = useNavigate();
 
-  const handlePartner = (e) => {
+  const handlePartner = async (e) => {
     e.preventDefault();
     const name = e.target.name.value;
     const email = e.target.email.value;
@@ -21,13 +25,20 @@ const CreatePartner = () => {
       profileImg: user?.photoURL,
       subject,
       mode,
+      ratting: 0,
+      partnerCount: 0,
       time,
       location,
       expriance,
     };
-    axiosSecure.post("/partners", newPartner).then((data) => {
-      console.log("clint", data.data);
-    });
+    const response = await axiosSecure.post("/partners", newPartner);
+    if (response.data.insertedId) {
+      success("success");
+      navigate("/");
+      e.target.reset();
+    } else {
+      error("oops something wong");
+    }
   };
   return (
     <div class="max-w-2xl mx-auto p-6 bg-white rounded-2xl shadow-xl mt-10 font-sans">
