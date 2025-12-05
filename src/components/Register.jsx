@@ -6,7 +6,7 @@ import useAxisosSecure from "../hook/useAxisosSecure";
 const Register = () => {
   const axiosSecure = useAxisosSecure();
   const navigate = useNavigate();
-  const { success, error } = useSwal();
+  const { success, errors } = useSwal();
   const { createUser, googleSignIn, setUser } = useAuth();
   const hangleGoogleSignUp = () => {
     googleSignIn()
@@ -16,7 +16,7 @@ const Register = () => {
         success("Welcome!");
       })
       .catch((err) => {
-        error(err.message);
+        errors(err.message);
       });
   };
   const HandleRegister = async (e) => {
@@ -28,7 +28,7 @@ const Register = () => {
 
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
     if (!passwordRegex.test(password)) {
-      error(
+      errors(
         "Password must have 1 uppercase, 1 lowercase & minimum 6 characters"
       );
       return;
@@ -45,7 +45,7 @@ const Register = () => {
         });
       })
       .catch((err) => {
-        error(err.message);
+        errors(err.message);
       });
   };
   return (

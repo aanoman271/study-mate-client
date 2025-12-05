@@ -57,8 +57,10 @@ const AuthProvider = ({ children }) => {
       setloadding(false);
       console.log("current userInfo", currentUser || "empty");
     });
-    return () => unsubsCribe;
+
+    return () => unsubsCribe();
   }, []);
+
   const authInfo = {
     user,
     loadding,

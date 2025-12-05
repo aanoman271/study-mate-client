@@ -7,7 +7,7 @@ import useSwal from "../../hook/useSwal";
 const Navbar = () => {
   const navigate = useNavigate();
   const { user, logOut } = useAuth();
-  const { success, error } = useSwal();
+  const { success, errors } = useSwal();
 
   const handleSignOut = () => {
     logOut()
@@ -16,7 +16,7 @@ const Navbar = () => {
         navigate("/");
       })
       .catch((err) => {
-        error(err.message);
+        errors(err.message);
       });
   };
   const navLink = (
@@ -69,6 +69,7 @@ const Navbar = () => {
       )}
     </>
   );
+
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="navbar-start">

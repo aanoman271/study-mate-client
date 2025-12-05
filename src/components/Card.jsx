@@ -21,7 +21,12 @@ const Card = ({ pdata }) => {
           Expriance: <span>{pdata.expriance}</span>
         </p>
       </div>
-      <Link className="btn bg-success h-7 btn-success"> View Deatails</Link>
+      <Link
+        to={`/viewDeatails/${pdata._id}`}
+        className="btn bg-success h-7 btn-success"
+      >
+        View Deatails
+      </Link>
     </div>
   );
 };

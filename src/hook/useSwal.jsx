@@ -12,7 +12,7 @@ const useSwal = () => {
     });
   };
 
-  const error = (title = "Error!", text = "") => {
+  const errors = (title = "Error!", text = "") => {
     Swal.fire({ icon: "error", title, text });
   };
 
@@ -29,7 +29,7 @@ const useSwal = () => {
     });
   };
 
-  return { success, error, confirm };
+  return { success, errors, confirm };
 };
 
 export default useSwal;

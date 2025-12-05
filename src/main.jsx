@@ -9,6 +9,8 @@ import CreatePartner from "./components/CreatePartner.jsx";
 import Register from "./components/Register.jsx";
 import LogIn from "./components/LogIn.jsx";
 import AuthProvider from "./Context/AuthProvider.jsx";
+import ViewDeatails from "./components/ViewDeatails.jsx";
+import PrivetRoute from "./privetroutes/PrivetRoute.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,16 +22,24 @@ const router = createBrowserRouter([
       },
       {
         path: "/findPartner",
-        Component: FindParthner,
+        element: <FindParthner>\</FindParthner>,
       },
       {
         path: "/createPartnerProfile",
-        element: <CreatePartner></CreatePartner>,
+        element: (
+          <PrivetRoute>
+            <CreatePartner></CreatePartner>
+          </PrivetRoute>
+        ),
       },
       { path: "/Register", Component: Register },
       {
         path: "login",
         Component: LogIn,
+      },
+      {
+        path: "/viewDeatails/:id",
+        element: <ViewDeatails></ViewDeatails>,
       },
     ],
   },

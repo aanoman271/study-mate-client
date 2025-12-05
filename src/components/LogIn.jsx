@@ -3,7 +3,7 @@ import useAuth from "../hook/useAuth";
 import useSwal from "../hook/useSwal";
 
 const LogIn = () => {
-  const { success, error } = useSwal();
+  const { success, errors } = useSwal();
   const { signInUser, setUser, googleSignIn } = useAuth();
   const navigate = useNavigate();
   const hangleGoogleSignUp = () => {
@@ -14,7 +14,7 @@ const LogIn = () => {
         success("Welcome!");
       })
       .catch((err) => {
-        error(err.message);
+        errors(err.message);
       });
   };
   const handleLogin = (e) => {
@@ -28,7 +28,7 @@ const LogIn = () => {
         setUser(userCredential);
       })
       .catch((err) => {
-        error(err.message);
+        errors(err.message);
       });
   };
   return (

@@ -28,3 +28,6 @@
 .tittle {
   @apply text-3xl font-bold text-center text-gray-800 mb-10;
 }
+.deatailsCard {
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.4);
+}

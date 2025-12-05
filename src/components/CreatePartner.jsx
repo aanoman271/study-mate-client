@@ -7,7 +7,7 @@ import { useNavigate } from "react-router";
 const CreatePartner = () => {
   const { user } = useAuth();
   const axiosSecure = useAxisosSecure();
-  const { success, error } = useSwal();
+  const { success, errors } = useSwal();
   const navigate = useNavigate();
 
   const handlePartner = async (e) => {
@@ -37,7 +37,7 @@ const CreatePartner = () => {
       navigate("/");
       e.target.reset();
     } else {
-      error("oops something wong");
+      errors("oops something wong");
     }
   };
   return (

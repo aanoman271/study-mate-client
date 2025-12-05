@@ -6,7 +6,7 @@ import useSwal from "../hook/useSwal";
 const FindParthner = () => {
   const { partnerData, setloadding, setPartnerData } = useAuth();
   const instance = useInstance();
-  const { error } = useSwal;
+  const { errors } = useSwal;
   const [sort, setSort] = useState("");
   const [search, setSearch] = useState("");
 
@@ -16,15 +16,15 @@ const FindParthner = () => {
         setloadding(true);
         const Partners = await instance.get("/partners");
         setPartnerData(Partners.data);
-        console.log(partnerData);
-      } catch {
-        error(" Failed to load partners. Please try again.");
+      } catch (err) {
+        errors(" Failed to load partners. Please try again.");
+        return Promise.reject(err);
       } finally {
         setloadding(false);
       }
     };
     fetchParter();
-  }, [instance, partnerData, setPartnerData, error, setloadding]);
+  }, [instance, errors]);
   const filtaredData = (partnerData || [])
     .filter((partner) => {
       const query = search.toLocaleLowerCase();
@@ -39,12 +39,12 @@ const FindParthner = () => {
     });
   return (
     <div className="bg-[#f1f6ff]">
-      <h3 className="font-semibold text-success mt-3 px-2.5 ">
+      <h3 className="font-semibold text-success my-3 px-2.5 ">
         ---Find Your Partner
       </h3>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between px-4 mb-3 items-center">
         <select
-          className="select select-bordered w-48"
+          className="outline-success border-success select select-bordered w-48"
           value={sort}
           onChange={(e) => setSort(e.target.value)}
         >
@@ -57,7 +57,7 @@ const FindParthner = () => {
           value={search}
           type="text"
           placeholder="Type here"
-          className="input"
+          className="outline-success border-success input"
         />
       </div>
       <div className="grid gap-5 justify-items-center grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
