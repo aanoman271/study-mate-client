@@ -114,8 +114,7 @@ const Navbar = () => {
                 user?.photoURL ||
                 "/src/assets/istockphoto-1223671392-2048x2048.jpg"
               }
-              alt=""
-            />{" "}
+            />
             ⬇️
           </div>
           <ul

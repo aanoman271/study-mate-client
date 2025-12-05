@@ -4,12 +4,12 @@ import useInstance from "../hook/useInstance";
 import Card from "./Card";
 import useSwal from "../hook/useSwal";
 const FindParthner = () => {
-  const { partnerData, setloadding, setPartnerData } = useAuth();
+  const { partnerData, setloadding, user, setPartnerData } = useAuth();
   const instance = useInstance();
   const { errors } = useSwal;
   const [sort, setSort] = useState("");
   const [search, setSearch] = useState("");
-
+  console.log(user);
   useEffect(() => {
     const fetchParter = async () => {
       try {
@@ -24,7 +24,7 @@ const FindParthner = () => {
       }
     };
     fetchParter();
-  }, [instance, errors]);
+  }, [errors, setPartnerData, setloadding, instance]);
   const filtaredData = (partnerData || [])
     .filter((partner) => {
       const query = search.toLocaleLowerCase();

@@ -16,7 +16,7 @@ const CreatePartner = () => {
     const email = e.target.email.value;
     const subject = e.target.subject.value;
     const mode = e.target.mode.value;
-    const time = e.target.mode.value;
+    const time = e.target.time.value;
     const location = e.target.location.value;
     const expriance = e.target.expriance.value;
     console.log(name, email, subject, mode, time, location, expriance);

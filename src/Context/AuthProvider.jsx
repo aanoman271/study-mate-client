@@ -24,6 +24,8 @@ const AuthProvider = ({ children }) => {
   };
   // create user with email
   const createUser = async (email, password, name, photoURL) => {
+    setloadding(true);
+
     const result = await createUserWithEmailAndPassword(auth, email, password);
     const user = result.user;
     await updateProfile(user, {
@@ -31,7 +33,6 @@ const AuthProvider = ({ children }) => {
       photoURL: photoURL,
     });
     setUser({ ...user });
-    setloadding(true);
     return result;
   };
   // update
@@ -53,9 +54,10 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubsCribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
       setloadding(false);
       console.log("current userInfo", currentUser || "empty");
+
+      setUser(currentUser);
     });
 
     return () => unsubsCribe();
