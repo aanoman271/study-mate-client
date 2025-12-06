@@ -14,7 +14,6 @@ import { auth } from "../fireBaseConfiq/fireBaseConfiq";
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loadding, setloadding] = useState(true);
-  const [partnerData, setPartnerData] = useState([]);
   const provider = new GoogleAuthProvider();
 
   // signIn with Google
@@ -32,7 +31,6 @@ const AuthProvider = ({ children }) => {
       displayName: name,
       photoURL: photoURL,
     });
-    setUser({ ...user });
     return result;
   };
   // update
@@ -43,10 +41,12 @@ const AuthProvider = ({ children }) => {
   // });
   // signin with email
   const signInUser = (email, password) => {
+    setloadding(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   const logOut = () => {
+    setloadding(true);
     return signOut(auth);
   };
 
@@ -54,10 +54,10 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubsCribe = onAuthStateChanged(auth, (currentUser) => {
-      setloadding(false);
       console.log("current userInfo", currentUser || "empty");
 
       setUser(currentUser);
+      setloadding(false);
     });
 
     return () => unsubsCribe();
@@ -67,8 +67,7 @@ const AuthProvider = ({ children }) => {
     user,
     loadding,
     setloadding,
-    partnerData,
-    setPartnerData,
+
     setUser,
     signInUser,
     createUser,

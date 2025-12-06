@@ -4,11 +4,13 @@ import useInstance from "../hook/useInstance";
 import Card from "./Card";
 import useSwal from "../hook/useSwal";
 const FindParthner = () => {
-  const { partnerData, setloadding, user, setPartnerData } = useAuth();
+  const { setloadding, user } = useAuth();
   const instance = useInstance();
   const { errors } = useSwal;
   const [sort, setSort] = useState("");
   const [search, setSearch] = useState("");
+  const [partnerData, setPartnerData] = useState([]);
+
   console.log(user);
   useEffect(() => {
     const fetchParter = async () => {

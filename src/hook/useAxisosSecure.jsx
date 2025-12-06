@@ -1,23 +1,30 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import useInstance from "./useInstance";
 import useAuth from "./useAuth";
 
-const useAxisosSecure = () => {
+const useAxiosSecure = () => {
   const instance = useInstance();
   const { user } = useAuth();
+
   useEffect(() => {
-    instance.interceptors.request.use((confiq) => {
-      if (user?.accessToken) {
-        confiq.headers.Authorization = `Bearer ${user.accessToken}`;
-        console.log(confiq);
-        return confiq;
-      }
+    const interceptor = instance.interceptors.request.use(
+      (config) => {
+        if (user?.accessToken) {
+          config.headers.Authorization = `Bearer ${user.accessToken}`;
+        }
+        return config;
+      },
       (error) => {
         return Promise.reject(error);
-      };
-    });
-  }, [instance]);
+      }
+    );
+
+    return () => {
+      instance.interceptors.request.eject(interceptor);
+    };
+  }, [user]);
+
   return instance;
 };
 
-export default useAxisosSecure;
+export default useAxiosSecure;

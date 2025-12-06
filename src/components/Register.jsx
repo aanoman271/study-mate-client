@@ -1,13 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hook/useAuth";
 import useSwal from "../hook/useSwal";
-import useAxisosSecure from "../hook/useAxisosSecure";
 
 const Register = () => {
-  const axiosSecure = useAxisosSecure();
   const navigate = useNavigate();
   const { success, errors } = useSwal();
-  const { createUser, googleSignIn, setUser } = useAuth();
+  const { createUser, googleSignIn } = useAuth();
   const hangleGoogleSignUp = () => {
     googleSignIn()
       .then(() => {
@@ -36,14 +34,13 @@ const Register = () => {
     await createUser(email, password, name, photo)
       .then((newUser) => {
         const UserInfo = { name, photo, email, password };
-        axiosSecure.post("/users", UserInfo).then((newOne) => {
-          console.log(newOne);
-          setUser(newUser);
-          navigate("/");
-          success("Welcome!", "Account created successfully");
-          e.target.reset();
-        });
+
+        console.log(newUser);
+        navigate("/");
+        success("Welcome!", "Account created successfully");
+        e.target.reset();
       })
+
       .catch((err) => {
         errors(err.message);
       });

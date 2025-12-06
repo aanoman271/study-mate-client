@@ -11,6 +11,7 @@ import LogIn from "./components/LogIn.jsx";
 import AuthProvider from "./Context/AuthProvider.jsx";
 import ViewDeatails from "./components/ViewDeatails.jsx";
 import PrivetRoute from "./privetroutes/PrivetRoute.jsx";
+import MyCollaction from "./components/MyCollaction.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -26,11 +27,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/createPartnerProfile",
-        element: (
-          <PrivetRoute>
-            <CreatePartner></CreatePartner>
-          </PrivetRoute>
-        ),
+        element: <CreatePartner></CreatePartner>,
       },
       { path: "/Register", Component: Register },
       {
@@ -40,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: "/viewDeatails/:id",
         element: <ViewDeatails></ViewDeatails>,
+      },
+      {
+        path: "myCollection",
+        element: <MyCollaction></MyCollaction>,
       },
     ],
   },

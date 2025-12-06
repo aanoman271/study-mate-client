@@ -41,6 +41,19 @@ const ViewDeatails = () => {
   };
 
   const handleReqest = async (partnerData) => {
+    const {
+      expriance,
+      location,
+      mode,
+      name,
+      partnerCount,
+      profileImg,
+      ratting,
+
+      subject,
+
+      time,
+    } = partnerData;
     if (user.email === partnerData.userEmail) {
       return errors("alraedy addet to partner");
     }
@@ -48,9 +61,20 @@ const ViewDeatails = () => {
     try {
       setloadding(true);
       const response = await secureInstance.post("/RequestPartner", {
-        ...partnerData,
-        PartnerId: partnerData._id,
-        userEmail: user.email,
+        expriance,
+        location,
+        mode,
+        name,
+        partnerCount,
+        profileImg,
+        ratting,
+
+        subject,
+        pId: partnerData._id,
+        time,
+        userEmail: user?.email,
+        userName: user?.displayName,
+        userPhoto: user?.photoURL,
       });
 
       if (response.data.insertedId) {

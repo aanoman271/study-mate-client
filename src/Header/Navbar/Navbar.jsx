@@ -58,6 +58,16 @@ const Navbar = () => {
               className={({ isActive }) =>
                 isActive ? "underline  font-semibold" : "hover:underline"
               }
+              to="/myCollection"
+            >
+              My Collection
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "underline  font-semibold" : "hover:underline"
+              }
               to="/"
             >
               blaaaaaaa
