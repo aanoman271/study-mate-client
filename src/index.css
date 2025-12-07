@@ -16,11 +16,11 @@
   name: "light";
   default: true;
   --color-primary: #424242;
-  --color-secondary: #454545; /*p type color */
-  --primary: #6d28d9; /* বাটন, লিঙ্ক */
+  --color-secondary: #454545;
+  --primary: #6d28d9;
   --primary-light: #8e24aa;
   --primary-dark: #4c1d95;
-  --accent: #8e24aa; /* হোভার, ট্যাগ */
+  --accent: #8e24aa;
   --bg-light: #faf5ff;
   --bg-dark: #1e1b4b;
   --gradient: linear-gradient(135deg, #454545, #3949ab);

@@ -4,7 +4,7 @@ import useInstance from "../hook/useInstance";
 import Card from "./Card";
 import useSwal from "../hook/useSwal";
 const FindParthner = () => {
-  const { setloadding, user } = useAuth();
+  const { user, setFetchLoadding } = useAuth();
   const instance = useInstance();
   const { errors } = useSwal;
   const [sort, setSort] = useState("");
@@ -15,18 +15,18 @@ const FindParthner = () => {
   useEffect(() => {
     const fetchParter = async () => {
       try {
-        setloadding(true);
+        setFetchLoadding(true);
         const Partners = await instance.get("/partners");
         setPartnerData(Partners.data);
       } catch (err) {
         errors(" Failed to load partners. Please try again.");
         return Promise.reject(err);
       } finally {
-        setloadding(false);
+        setFetchLoadding(false);
       }
     };
     fetchParter();
-  }, [errors, setPartnerData, setloadding, instance]);
+  }, [user?.email]);
   const filtaredData = (partnerData || [])
     .filter((partner) => {
       const query = search.toLocaleLowerCase();

@@ -6,24 +6,24 @@ import useAuth from "../hook/useAuth";
 
 const TopThree = () => {
   const { success, errors } = useSwal();
-  const { loadding, setloadding } = useAuth();
+  const { setFetchLoadding, user } = useAuth();
   const [topPartner, setToppartner] = useState([]);
   const instance = useInstance();
   useEffect(() => {
     const topP = async () => {
       try {
-        setloadding(true);
+        setFetchLoadding(true);
         const response = await instance.get("/partners/top");
         setToppartner(response.data);
         console.log(response.data);
       } catch (err) {
         errors(err);
       } finally {
-        setloadding(false);
+        setFetchLoadding(false);
       }
     };
     topP();
-  }, []);
+  }, [user?.email]);
 
   return (
     <div className="bg-success flex flex-col items-center justify-center">

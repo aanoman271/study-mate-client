@@ -1,14 +1,14 @@
 import React from "react";
 import TopThree from "./TopThree";
 import Slider from "./slider";
-import HowItWorks from "./HowItWorks";
+import HowItsWork from "./HowItsWork";
 
 const Home = () => {
   return (
     <div>
       <Slider></Slider>
       <TopThree></TopThree>
-      <HowItWorks></HowItWorks>
+      <HowItsWork></HowItsWork>
     </div>
   );
 };

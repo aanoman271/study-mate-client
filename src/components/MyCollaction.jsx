@@ -8,8 +8,8 @@ import { Link } from "react-router";
 
 const MyCollaction = () => {
   const secureInstance = useAxisosSecure();
-  const { user, setloadding } = useAuth();
-  const { errors, success } = useSwal();
+  const { user, setFetchLoadding } = useAuth();
+  const { success } = useSwal();
   const [myCollection, setMyCollection] = useState([]);
 
   const DeleteCollection = async (id) => {
@@ -18,9 +18,7 @@ const MyCollaction = () => {
       console.log(response);
       if (response.data.deletedCount > 0) {
         success("parther deleted");
-        const filtaredData = await myCollection.filter(
-          (data) => data._id !== id
-        );
+        const filtaredData = myCollection.filter((data) => data._id !== id);
         setMyCollection(filtaredData);
       }
     } catch (error) {
@@ -30,12 +28,11 @@ const MyCollaction = () => {
 
   useEffect(() => {
     const fetchCollection = async () => {
-      setloadding(true);
-
+      if (!user?.email) {
+        return;
+      }
       try {
-        if (!user?.email) {
-          return;
-        }
+        setFetchLoadding(true);
 
         const response = await secureInstance.get(
           `/RequestPartner?email=${user?.email}`
@@ -45,13 +42,12 @@ const MyCollaction = () => {
       } catch (error) {
         console.log(error);
       } finally {
-        setloadding(false);
+        setFetchLoadding(false);
       }
     };
     fetchCollection();
-  }, []);
+  }, [user?.email]);
 
-  console.log(myCollection);
   return (
     <>
       <div className="my-28">
@@ -70,7 +66,7 @@ const MyCollaction = () => {
             </thead>
             <tbody>
               {myCollection.map((data, index) => (
-                <tr>
+                <tr key={data._id}>
                   <th>{index + 1}</th>
                   <td>
                     <div className="flex items-center gap-3">

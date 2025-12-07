@@ -9,13 +9,13 @@ const ViewDeatails = () => {
   const [deatail, setdeatail] = useState([]);
   const instance = useInstance();
   const { errors, success } = useSwal();
-  const { setloadding, loadding, user } = useAuth();
+  const { setFetchLoadding, FetchLoadding, user } = useAuth();
   const secureInstance = useAxisosSecure();
   const [counts, setCount] = useState(0);
 
   const handleRattigs = async (e) => {
     e.preventDefault();
-    if (loadding || !user || !user.accessToken) {
+    if (FetchLoadding || !user || !user.accessToken) {
       errors(
         "Authentication Error",
         "Please wait for user data to load or log in again."
@@ -58,7 +58,7 @@ const ViewDeatails = () => {
     }
 
     try {
-      setloadding(true);
+      setFetchLoadding(true);
       const response = await secureInstance.post("/RequestPartner", {
         expriance,
         location,
@@ -75,6 +75,7 @@ const ViewDeatails = () => {
         userName: user?.displayName,
         userPhoto: user?.photoURL,
       });
+      console.log(response.data);
 
       if (response.data.insertedId) {
         success("partner request sent");
@@ -86,25 +87,26 @@ const ViewDeatails = () => {
       console.error("Request failed:", err);
       errors(err);
     } finally {
-      setloadding(false);
+      setFetchLoadding(false);
     }
   };
   useEffect(() => {
     const fetchDeatail = async () => {
       try {
-        setloadding(true);
+        setFetchLoadding(true);
         const promise = await instance.get(`/partners/${id}`);
         setdeatail(promise.data);
+        console.log(promise.data);
         setCount(promise.data.partnerCount || 0);
       } catch (err) {
         console.log("massage from frtch deatails", err.message);
         errors(" Failed to load partners. Please try again.");
       } finally {
-        setloadding(false);
+        setFetchLoadding(false);
       }
     };
     fetchDeatail();
-  }, []);
+  }, [id]);
   const avgRatting =
     deatail?.totalRatting && deatail?.rattingCount
       ? deatail.totalRatting / deatail.rattingCount

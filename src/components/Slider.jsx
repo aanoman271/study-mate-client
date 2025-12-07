@@ -3,7 +3,7 @@ import React from "react";
 const Slider = () => {
   return (
     <div className="w-full mx-auto mt-8">
-      <div className="carousel w-full h-[380px] rounded-xl shadow-md overflow-hidden">
+      <div className="carousel w-full h-[380px] rounded-t-xl shadow-md overflow-hidden">
         <div id="slide1" className="carousel-item relative w-full">
           <div className="w-full h-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white flex flex-col items-center justify-center p-10">
             <h2 className="text-4xl font-bold mb-3">

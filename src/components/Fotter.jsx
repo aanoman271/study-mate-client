@@ -11,7 +11,7 @@ const Footer = () => {
   return (
     <footer className="bg-base-100 border-t mt-10">
       <div className="max-w-7xl mx-auto p-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand */}
           <div>
             <h2 className="text-3xl font-bold text-gray-700">
@@ -79,11 +79,8 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-
-          {/* Gradient Info Box */}
         </div>
 
-        {/* Bottom copyright */}
         <div className="text-center mt-10 text-secondary">
           © {new Date().getFullYear()}{" "}
           <span className="text-purple-600 font-semibold">StudyMade</span>. All

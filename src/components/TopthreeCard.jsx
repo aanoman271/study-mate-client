@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { FaStar } from "react-icons/fa6";
 import { Link } from "react-router";
 
@@ -8,7 +7,7 @@ const TopthreeCard = (data) => {
     topP?.totalRatting && topP?.rattingCount
       ? topP.totalRatting / topP.rattingCount
       : 0;
-  useEffect(() => {}, []);
+
   return (
     <div className=" ">
       <div className=" bg-[#fff] p-5 rounded-2xl shadow-2xl">

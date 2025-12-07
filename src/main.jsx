@@ -28,7 +28,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/createPartnerProfile",
-        element: <CreatePartner></CreatePartner>,
+        element: (
+          <PrivetRoute>
+            {" "}
+            <CreatePartner></CreatePartner>
+          </PrivetRoute>
+        ),
       },
       { path: "/Register", Component: Register },
       {
