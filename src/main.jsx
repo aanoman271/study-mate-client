@@ -13,6 +13,7 @@ import ViewDeatails from "./components/ViewDeatails.jsx";
 import PrivetRoute from "./privetroutes/PrivetRoute.jsx";
 import MyCollaction from "./components/MyCollaction.jsx";
 import UpdateRequser from "./components/UpdateRequser.jsx";
+import Profile from "./components/Profile.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -58,7 +59,20 @@ const router = createBrowserRouter([
       },
       {
         path: "updateRequest/:id",
-        element: <UpdateRequser></UpdateRequser>,
+        element: (
+          <PrivetRoute>
+            {" "}
+            <UpdateRequser></UpdateRequser>
+          </PrivetRoute>
+        ),
+      },
+      {
+        path: "profile",
+        element: (
+          <PrivetRoute>
+            <Profile></Profile>
+          </PrivetRoute>
+        ),
       },
     ],
   },

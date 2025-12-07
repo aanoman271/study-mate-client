@@ -10,7 +10,7 @@ const TopthreeCard = (data) => {
 
   return (
     <div className=" ">
-      <div className=" bg-[#fff] p-5 rounded-2xl shadow-2xl">
+      <div className=" bg-[#fff] p-5 rounded-t-2xl shadow-2xl">
         <div className="flex gap-3 items-center">
           <div>
             <img

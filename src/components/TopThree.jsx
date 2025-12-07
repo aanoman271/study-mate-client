@@ -5,7 +5,7 @@ import useSwal from "../hook/useSwal";
 import useAuth from "../hook/useAuth";
 
 const TopThree = () => {
-  const { success, errors } = useSwal();
+  const { errors } = useSwal();
   const { setFetchLoadding, user } = useAuth();
   const [topPartner, setToppartner] = useState([]);
   const instance = useInstance();
@@ -27,7 +27,7 @@ const TopThree = () => {
 
   return (
     <div className="bg-success flex flex-col items-center justify-center">
-      <h3 className="py-7 text-center text-3xl text-primary font-semibold">
+      <h3 className="py-7 text-center text-2xl text-primary font-semibold">
         Top Three Partner
       </h3>
       <div className="grid gap-5  my-7 justify-items-center grid-cols-1 md:grid-cols-3 ">

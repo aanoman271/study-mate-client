@@ -126,7 +126,7 @@ const Navbar = () => {
               <>
                 {" "}
                 <li>
-                  <NavLink to="/">Profile</NavLink>
+                  <NavLink to="/profile">Profile</NavLink>
                 </li>
                 <li onClick={handleSignOut}>
                   <a>Log Out</a>
