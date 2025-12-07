@@ -4,10 +4,9 @@ import { Navigate, useLocation } from "react-router";
 import useAuth from "../hook/useAuth";
 import Loading from "../components/Loading";
 
-const PrivetRoute = ({ isAuthenticated, children }) => {
+const PrivetRoute = ({ children }) => {
   const { user, loadding } = useAuth();
   const location = useLocation();
-  console.log(user);
   if (loadding) {
     return <Loading></Loading>;
   }
@@ -15,7 +14,7 @@ const PrivetRoute = ({ isAuthenticated, children }) => {
   if (!user) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
-  return isAuthenticated && children;
+  return children;
 };
 
 export default PrivetRoute;

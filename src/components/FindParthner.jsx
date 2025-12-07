@@ -40,7 +40,7 @@ const FindParthner = () => {
       if (sort === "name") return (a.name || "").localeCompare(b.name || "");
     });
   return (
-    <div className="bg-[#f1f6ff]">
+    <div className="bg-[#f1f6ff] my-7">
       <h3 className="font-semibold text-success my-3 px-2.5 ">
         ---Find Your Partner
       </h3>

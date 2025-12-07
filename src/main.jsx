@@ -12,6 +12,7 @@ import AuthProvider from "./Context/AuthProvider.jsx";
 import ViewDeatails from "./components/ViewDeatails.jsx";
 import PrivetRoute from "./privetroutes/PrivetRoute.jsx";
 import MyCollaction from "./components/MyCollaction.jsx";
+import UpdateRequser from "./components/UpdateRequser.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: "myCollection",
         element: <MyCollaction></MyCollaction>,
+      },
+      {
+        path: "updateRequest/:id",
+        element: <UpdateRequser></UpdateRequser>,
       },
     ],
   },
