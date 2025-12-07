@@ -49,12 +49,12 @@ const MyCollaction = () => {
       }
     };
     fetchCollection();
-  }, [user?.email]);
+  }, []);
 
   console.log(myCollection);
   return (
     <>
-      <div>
+      <div className="my-28">
         <div className="overflow-x-auto">
           <table className="table">
             {/* head */}

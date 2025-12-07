@@ -37,11 +37,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/viewDeatails/:id",
-        element: <ViewDeatails></ViewDeatails>,
+        element: (
+          <PrivetRoute>
+            <ViewDeatails></ViewDeatails>
+          </PrivetRoute>
+        ),
       },
       {
         path: "myCollection",
-        element: <MyCollaction></MyCollaction>,
+        element: (
+          <PrivetRoute>
+            <MyCollaction></MyCollaction>
+          </PrivetRoute>
+        ),
       },
       {
         path: "updateRequest/:id",

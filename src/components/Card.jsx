@@ -1,14 +1,22 @@
 import { Link } from "react-router";
 
 const Card = ({ pdata }) => {
+  const avgRatting =
+    pdata?.totalRatting && pdata?.rattingCount
+      ? pdata.totalRatting / pdata.rattingCount
+      : 0;
   return (
     <div className=" gap-5 bg-[#fcfbfc] drop-shadow-2xl w-4/5  rounded-4xl p-6">
       <div>
         <img className="rounded-full w-16 h-16" src={pdata.profileImg} alt="" />
       </div>
 
-      <div>
+      <div className="flex items-center justify-between mb-4">
         <h3 className="text-2xl text-[#2f2e31] font-semibold ">{pdata.name}</h3>
+        <small className="">
+          <strong>Avg Ratting:</strong>
+          {avgRatting}
+        </small>
       </div>
       <div className="flex justify-between items-center">
         <small className="text-secondary">{pdata.subject}</small>

@@ -60,7 +60,9 @@ const AuthProvider = ({ children }) => {
       setloadding(false);
     });
 
-    return () => unsubsCribe();
+    return () => {
+      unsubsCribe();
+    };
   }, []);
 
   const authInfo = {

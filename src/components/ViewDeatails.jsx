@@ -4,7 +4,6 @@ import { useParams } from "react-router";
 import useSwal from "../hook/useSwal";
 import useAuth from "../hook/useAuth";
 import useAxisosSecure from "../hook/useAxisosSecure";
-import Loading from "./Loading";
 const ViewDeatails = () => {
   const { id } = useParams();
   const [deatail, setdeatail] = useState([]);
@@ -25,7 +24,7 @@ const ViewDeatails = () => {
     }
     const ratting = e.target.rate.value;
     const ratingData = {
-      rating: ratting,
+      ratting: ratting,
     };
     try {
       const response = await secureInstance.patch(
@@ -106,7 +105,10 @@ const ViewDeatails = () => {
     };
     fetchDeatail();
   }, []);
-  devicePixelRatio;
+  const avgRatting =
+    deatail?.totalRatting && deatail?.rattingCount
+      ? deatail.totalRatting / deatail.rattingCount
+      : 0;
 
   return (
     <>
@@ -121,12 +123,33 @@ const ViewDeatails = () => {
               />
             </div>
           </div>
-          <div className="my-5 px-6 mt-24">
-            <h3 className="text-2xl font-semibold text-black">
-              {deatail.name}
-            </h3>
+          <div className="flex justify-between items-center my-5 px-6 mt-24">
+            <div>
+              <h3 className="text-2xl font-semibold text-black">
+                {deatail?.name}
+                <h4 className="text-sm text-primary font-semibold">
+                  Avg Rating: {avgRatting.toFixed(1)}
+                </h4>
+              </h3>
+            </div>
 
-            <p>{deatail?.ratting} +</p>
+            <div className=" ">
+              <form
+                onSubmit={handleRattigs}
+                className="flex items-center w-full "
+              >
+                <label className="block text-gray-700">Rating (1-5)</label>
+                <input
+                  type="number"
+                  name="rate"
+                  min="1"
+                  max="5"
+                  className="border-success  input input-bordered w-full"
+                  required
+                />
+                <button className="btn btn-success">send</button>
+              </form>
+            </div>
           </div>
           <div className="text-gray-800 px-6 grid grid-cols-2 gap-6">
             <p>
@@ -162,20 +185,6 @@ const ViewDeatails = () => {
             >
               Sent Request
             </button>
-          </div>
-          <div className="w-28">
-            <form onSubmit={handleRattigs}>
-              <label className="block text-gray-700">Rating (1-5)</label>
-              <input
-                type="number"
-                name="rate"
-                min="1"
-                max="5"
-                className="input input-bordered w-full"
-                required
-              />
-              <button className="btn btn-success">send</button>
-            </form>
           </div>
         </div>
       </div>

@@ -1,0 +1,42 @@
+import React, { useEffect, useState } from "react";
+import TopthreeCard from "./TopthreeCard";
+import useInstance from "../hook/useInstance";
+import useSwal from "../hook/useSwal";
+import useAuth from "../hook/useAuth";
+
+const TopThree = () => {
+  const { success, errors } = useSwal();
+  const { loadding, setloadding } = useAuth();
+  const [topPartner, setToppartner] = useState([]);
+  const instance = useInstance();
+  useEffect(() => {
+    const topP = async () => {
+      try {
+        setloadding(true);
+        const response = await instance.get("/partners/top");
+        setToppartner(response.data);
+        console.log(response.data);
+      } catch (err) {
+        errors(err);
+      } finally {
+        setloadding(false);
+      }
+    };
+    topP();
+  }, []);
+
+  return (
+    <div className="bg-success flex flex-col items-center justify-center">
+      <h3 className="py-7 text-center text-3xl text-primary font-semibold">
+        Top Three Partner
+      </h3>
+      <div className="grid gap-5  my-7 justify-items-center grid-cols-1 md:grid-cols-3 ">
+        {topPartner.map((data) => (
+          <TopthreeCard key={data._id} data={data}></TopthreeCard>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default TopThree;

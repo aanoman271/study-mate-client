@@ -1,9 +1,14 @@
 import React from "react";
+import TopThree from "./TopThree";
+import Slider from "./slider";
+import HowItWorks from "./HowItWorks";
 
 const Home = () => {
   return (
     <div>
-      <h1>homeeeeeeeee</h1>
+      <Slider></Slider>
+      <TopThree></TopThree>
+      <HowItWorks></HowItWorks>
     </div>
   );
 };
