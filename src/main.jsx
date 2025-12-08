@@ -14,6 +14,7 @@ import PrivetRoute from "./privetroutes/PrivetRoute.jsx";
 import MyCollaction from "./components/MyCollaction.jsx";
 import UpdateRequser from "./components/UpdateRequser.jsx";
 import Profile from "./components/Profile.jsx";
+import ErrorPage from "./components/ErrorPage.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -74,13 +75,17 @@ const router = createBrowserRouter([
           </PrivetRoute>
         ),
       },
+      {
+        path: "*",
+        element: <ErrorPage></ErrorPage>,
+      },
     ],
   },
 ]);
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthProvider>
-      <RouterProvider router={router} />,
+      <RouterProvider router={router} />
     </AuthProvider>
   </StrictMode>
 );

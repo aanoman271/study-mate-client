@@ -11,7 +11,6 @@ const FindParthner = () => {
   const [search, setSearch] = useState("");
   const [partnerData, setPartnerData] = useState([]);
 
-  console.log(user);
   useEffect(() => {
     const fetchParter = async () => {
       try {
@@ -62,7 +61,7 @@ const FindParthner = () => {
           className="outline-success border-success input"
         />
       </div>
-      <div className="grid gap-5 place-items-center  grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
+      <div className="grid gap-5 justify-items-center w-full  grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
         {filtaredData.map((Pdata) => (
           <Card key={Pdata._id} pdata={Pdata}></Card>
         ))}

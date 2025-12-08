@@ -114,8 +114,8 @@ const ViewDeatails = () => {
 
   return (
     <>
-      <div className="flex sm:w-[95%] justify-center items-center">
-        <div className="  w-[80%] deatailsCard  mx-auto pb-8 bg-[#f4f4f4] rounded-s-sm">
+      <div className="flex  justify-center items-center">
+        <div className=" w-[100%] md:w-[80%] deatailsCard  mx-auto pb-8 bg-[#f4f4f4] rounded-s-sm">
           <div className="bg-[#fff] border-b  border-success relative ">
             <div className=" relative top-11 px-6 ">
               <img

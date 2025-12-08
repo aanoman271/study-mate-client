@@ -6,7 +6,7 @@ const Card = ({ pdata }) => {
       ? pdata.totalRatting / pdata.rattingCount
       : 0;
   return (
-    <div className=" gap-5 bg-[#fcfbfc] drop-shadow-2xl w-4/5  rounded-4xl p-6">
+    <div className="  bg-[#fcfbfc] drop-shadow-2xl w-4/5  rounded-4xl p-6">
       <div>
         <img className="rounded-full w-16 h-16" src={pdata.profileImg} alt="" />
       </div>

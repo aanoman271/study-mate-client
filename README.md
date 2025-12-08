@@ -1,24 +1,36 @@
-# React + Vite
+# 🧑‍💻 StudyMate: A Social Learning Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+StudyMate is a modern social platform designed to connect students who are looking for study partners. Users can easily find collaborators based on their **preferred subject, educational level, location, or desired mode (online/offline)**. It is a social platform strictly dedicated to academics and studying.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Core Features
 
-## React Compiler
+- **User Authentication:** Secure registration and login using Email/Password and Google Sign-In via Firebase.
+- **Study Partner Profile:** Logged-in users can create their detailed partner profile with their academic information.
+- **Search & Sorting:** Ability to view all profiles, and search/sort them by subject or experience level.
+- **Partner Request:** Feature to send a direct "Partner Request" to a preferred profile.
+- **Connection Management:** A system to view, update the status, or delete one's sent and received requests.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Technology Stack (MERN + Firebase)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+This project is a **MERN stack** application secured by **Firebase Authentication**.
 
+### Frontend (Client)
 
+| Technology                        | Purpose                                      |
+| :-------------------------------- | :------------------------------------------- |
+| **React 18 + Vite**               | Fast development and high performance SPA    |
+| **Tailwind CSS + DaisyUI**        | Responsive and modern design implementation  |
+| **React Router Dom v6.4+**        | Efficient routing and navigation             |
+| **Firebase Authentication**       | Secure login and registration (Email/Google) |
+| **Axios, React Icons, Swiper.js** | Data fetching, icons, and carousels          |
+| **React Toastify/SweetAlert2**    | Providing immediate user feedback            |
 
+---
 
+## 🚀 Project Execution Summary
 
-
-assalamu walaikum vai
-amar microphone nai .amar problem hoise privet route er components barbar rendar hoy loadding choltei thate off hoy na .sudhu privet route er components gulo tei amon hoy .ja ja korte bolben tai kortesi .mic na thakay ektu somossa hobe tar jonno sorry vai
+The project was completed following a clear, phased development plan, resulting in the following Git activity:

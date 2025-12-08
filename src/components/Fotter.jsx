@@ -5,14 +5,14 @@ import {
   FaTwitter,
   FaInstagram,
   FaLinkedin,
+  FaHeart,
 } from "react-icons/fa";
 
 const Footer = () => {
   return (
     <footer className="bg-base-100 border-t mt-10">
       <div className="max-w-7xl mx-auto p-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Brand */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <h2 className="text-3xl font-bold text-gray-700">
               Study <span className="text-purple-600">Made</span>
@@ -21,7 +21,6 @@ const Footer = () => {
               For Learner And Partner
             </p>
 
-            {/* Social Icons */}
             <div className="flex gap-4 mt-5 text-lg">
               <FaFacebookF className="hover:text-purple-600 cursor-pointer" />
               <FaTwitter className="hover:text-purple-600 cursor-pointer" />
@@ -30,7 +29,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
           <div>
             <h3 className="text-lg font-semibold text-gray-700 mb-3">
               Quick Links
@@ -59,7 +57,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Support */}
           <div>
             <h3 className="text-lg font-semibold text-gray-700 mb-3">
               Support
@@ -79,12 +76,22 @@ const Footer = () => {
               </li>
             </ul>
           </div>
+          <div className="  bg-gradient-to-br from-purple-600 to-indigo-600 rounded-2xl p-10">
+            <p className="opacity-[0.8] text-gray-400 ">
+              StudyMate helps students find perfect study partners, share
+              knowledge, and grow together through collaboration.
+            </p>
+          </div>
         </div>
 
-        <div className="text-center mt-10 text-secondary">
-          © {new Date().getFullYear()}{" "}
-          <span className="text-purple-600 font-semibold">StudyMade</span>. All
-          Rights Reserved.
+        <div className="border-t border-white/30 mt-10 pt-6 text-center">
+          <p className="text-sm">
+            © 2025{" "}
+            <span className="text-purple-600 font-semibold">StudyMade</span>-
+            All Rights Reserved | Made with
+            <FaHeart className="inline mx-1 text-red-300" /> by
+            <span className="font-bold"> Noman </span>
+          </p>
         </div>
       </div>
     </footer>

@@ -124,7 +124,6 @@ const Navbar = () => {
           >
             {user ? (
               <>
-                {" "}
                 <li>
                   <NavLink to="/profile">Profile</NavLink>
                 </li>
