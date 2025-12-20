@@ -1,4 +1,6 @@
 import React from "react";
+import { BiErrorCircle } from "react-icons/bi";
+import { Link } from "react-router";
 
 const ErrorPage = () => {
   return (

@@ -19,7 +19,6 @@ const UpdateRequser = () => {
       userPhoto: photo,
       time: time,
     };
-    console.log(updatedData);
     try {
       const response = await secureInstance.patch(
         `/RequestPartner/${id}`,

@@ -3,7 +3,8 @@ import { useMemo } from "react";
 const useInstance = () => {
   const instance = useMemo(() => {
     const newInstance = axios.create({
-      baseURL: "http://localhost:3000",
+      baseURL: "https://studymate-server-kappa.vercel.app",
+
       headers: {
         "Content-Type": "application/json",
       },

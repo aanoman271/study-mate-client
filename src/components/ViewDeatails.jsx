@@ -27,11 +27,7 @@ const ViewDeatails = () => {
       ratting: ratting,
     };
     try {
-      const response = await secureInstance.patch(
-        `/partners/${id}`,
-        ratingData
-      );
-      console.log(response.data);
+      await secureInstance.patch(`/partners/${id}`, ratingData);
       success("ratting send");
     } catch (error) {
       console.log(error.message);
@@ -75,7 +71,6 @@ const ViewDeatails = () => {
         userName: user?.displayName,
         userPhoto: user?.photoURL,
       });
-      console.log(response.data);
 
       if (response.data.insertedId) {
         success("partner request sent");
@@ -96,7 +91,6 @@ const ViewDeatails = () => {
         setFetchLoadding(true);
         const promise = await instance.get(`/partners/${id}`);
         setdeatail(promise.data);
-        console.log(promise.data);
         setCount(promise.data.partnerCount || 0);
       } catch (err) {
         console.log("massage from frtch deatails", err.message);

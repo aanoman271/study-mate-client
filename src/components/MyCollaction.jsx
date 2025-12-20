@@ -15,7 +15,6 @@ const MyCollaction = () => {
   const DeleteCollection = async (id) => {
     try {
       const response = await secureInstance.delete(`/RequestPartner/${id}`);
-      console.log(response);
       if (response.data.deletedCount > 0) {
         success("parther deleted");
         const filtaredData = myCollection.filter((data) => data._id !== id);

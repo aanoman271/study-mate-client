@@ -4,8 +4,8 @@ import { NavLink } from "react-router";
 const Logo = () => {
   return (
     <a href="/" class="flex items-center gap-3 group">
-      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-600 to-indigo-600 p-2 flex items-center justify-center shadow-lg">
-        <svg viewBox="0 0 64 64" class="w-7 h-7 text-white">
+      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-600 to-indigo-600 p-2 flex items-center justify-center shadow-lg">
+        <svg viewBox="0 0 64 64" className="w-7 h-7 text-white">
           <path
             d="M32 42 L14 32 L18 26 L32 36 L46 26 L50 32 Z"
             fill="none"

@@ -32,10 +32,9 @@ const Register = () => {
       return;
     }
     await createUser(email, password, name, photo)
-      .then((newUser) => {
+      .then(() => {
         const UserInfo = { name, photo, email, password };
 
-        console.log(newUser);
         navigate("/");
         success("Welcome!", "Account created successfully");
         e.target.reset();

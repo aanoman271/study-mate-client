@@ -13,13 +13,11 @@ const CreatePartner = () => {
   const handlePartner = async (e) => {
     e.preventDefault();
     const name = e.target.name.value;
-    const email = e.target.email.value;
     const subject = e.target.subject.value;
     const mode = e.target.mode.value;
     const time = e.target.time.value;
     const location = e.target.location.value;
     const expriance = e.target.expriance.value;
-    console.log(name, email, subject, mode, time, location, expriance);
     const newPartner = {
       name: name,
       profileImg: user?.photoURL,
@@ -54,7 +52,6 @@ const CreatePartner = () => {
             name="name"
             value={user?.displayName || ""}
             type="text"
-            required
             placeholder="Aisha Rahman"
             class="w-full px-5 py-4 border border-gray-300 rounded-xl focus:ring-4 focus:ring-indigo-200 focus:border-indigo-500 outline-none transition"
           />
@@ -68,7 +65,6 @@ const CreatePartner = () => {
             name="email"
             type="email"
             value={user?.email}
-            readonly
             class="w-full px-5 py-4 bg-gray-50 border border-gray-300 rounded-xl text-gray-600"
           />
         </div>
