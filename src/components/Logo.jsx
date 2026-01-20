@@ -24,7 +24,7 @@ const Logo = () => {
       </div>
 
       <div class="leading-tight">
-        <h1 class="text-2xl font-bold text-gray-800 text-[gradient-to-b from-indigo-400 to-indigo-700] ">
+        <h1 class="text-2xl font-bold text-[#7e29f9] text-[gradient-to-b from-indigo-400 to-indigo-700] ">
           Study<span class="text-purple-600">Mate</span>
         </h1>
         <p

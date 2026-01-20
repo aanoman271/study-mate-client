@@ -14,7 +14,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto p-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h2 className="text-3xl font-bold text-gray-700">
+            <h2 className="text-3xl font-bold text-[#7e29f9]">
               Study <span className="text-purple-600">Made</span>
             </h2>
             <p className="text-secondary mt-2 font-medium">
