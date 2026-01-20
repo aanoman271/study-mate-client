@@ -3,8 +3,11 @@ import useAuth from "../hook/useAuth";
 import useInstance from "../hook/useInstance";
 import Card from "./Card";
 import useSwal from "../hook/useSwal";
+import Loadding from "./Lodding";
 const FindParthner = () => {
-  const { user, setFetchLoadding } = useAuth();
+  const [lodding, setlodding] = useState(true);
+
+  const { user } = useAuth();
   const instance = useInstance();
   const { errors } = useSwal;
   const [sort, setSort] = useState("");
@@ -14,14 +17,14 @@ const FindParthner = () => {
   useEffect(() => {
     const fetchParter = async () => {
       try {
-        setFetchLoadding(true);
+        setlodding(true);
         const Partners = await instance.get("/partners");
         setPartnerData(Partners.data);
       } catch (err) {
         errors(" Failed to load partners. Please try again.");
         return Promise.reject(err);
       } finally {
-        setFetchLoadding(false);
+        setlodding(false);
       }
     };
     fetchParter();
@@ -38,6 +41,7 @@ const FindParthner = () => {
     .sort((a, b) => {
       if (sort === "name") return (a.name || "").localeCompare(b.name || "");
     });
+  if (lodding) return <Loadding></Loadding>;
   return (
     <div className="bg-[#f1f6ff] my-7">
       <h3 className="font-semibold text-success my-3 px-2.5 ">

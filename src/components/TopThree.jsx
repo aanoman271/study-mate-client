@@ -14,7 +14,6 @@ const TopThree = () => {
       try {
         setFetchLoadding(true);
         const response = await instance.get("/partners/top");
-        console.log(response.data);
         setToppartner(response.data);
       } catch (err) {
         errors(err);

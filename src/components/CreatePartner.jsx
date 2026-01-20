@@ -50,7 +50,7 @@ const CreatePartner = () => {
           </label>
           <input
             name="name"
-            value={user?.displayName || ""}
+            defaultValue={user?.displayName || ""}
             type="text"
             placeholder="Aisha Rahman"
             class="w-full px-5 py-4 border border-gray-300 rounded-xl focus:ring-4 focus:ring-indigo-200 focus:border-indigo-500 outline-none transition"
@@ -64,7 +64,7 @@ const CreatePartner = () => {
           <input
             name="email"
             type="email"
-            value={user?.email}
+            defaultValue={user?.email}
             class="w-full px-5 py-4 bg-gray-50 border border-gray-300 rounded-xl text-gray-600"
           />
         </div>

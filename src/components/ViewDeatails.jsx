@@ -4,18 +4,19 @@ import { useParams } from "react-router";
 import useSwal from "../hook/useSwal";
 import useAuth from "../hook/useAuth";
 import useAxisosSecure from "../hook/useAxisosSecure";
+import Loadding from "./Lodding";
 const ViewDeatails = () => {
   const { id } = useParams();
   const [deatail, setdeatail] = useState([]);
   const instance = useInstance();
   const { errors, success } = useSwal();
-  const { setFetchLoadding, FetchLoadding, user } = useAuth();
+  const { user } = useAuth();
   const secureInstance = useAxisosSecure();
   const [counts, setCount] = useState(0);
-
+  const [lodding, setLodding] = useState(true);
   const handleRattigs = async (e) => {
     e.preventDefault();
-    if (FetchLoadding || !user || !user.accessToken) {
+    if (lodding || !user || !user.accessToken) {
       errors(
         "Authentication Error",
         "Please wait for user data to load or log in again."
@@ -27,10 +28,13 @@ const ViewDeatails = () => {
       ratting: ratting,
     };
     try {
+      setLodding(true);
       await secureInstance.patch(`/partners/${id}`, ratingData);
       success("ratting send");
     } catch (error) {
       console.log(error.message);
+    } finally {
+      setLodding(false);
     }
     e.target.reset();
   };
@@ -54,7 +58,7 @@ const ViewDeatails = () => {
     }
 
     try {
-      setFetchLoadding(true);
+      setLodding(true);
       const response = await secureInstance.post("/RequestPartner", {
         expriance,
         location,
@@ -82,13 +86,13 @@ const ViewDeatails = () => {
       console.error("Request failed:", err);
       errors(err);
     } finally {
-      setFetchLoadding(false);
+      setLodding(false);
     }
   };
   useEffect(() => {
     const fetchDeatail = async () => {
       try {
-        setFetchLoadding(true);
+        setLodding(true);
         const promise = await instance.get(`/partners/${id}`);
         setdeatail(promise.data);
         setCount(promise.data.partnerCount || 0);
@@ -96,7 +100,7 @@ const ViewDeatails = () => {
         console.log("massage from frtch deatails", err.message);
         errors(" Failed to load partners. Please try again.");
       } finally {
-        setFetchLoadding(false);
+        setLodding(false);
       }
     };
     fetchDeatail();
@@ -105,7 +109,7 @@ const ViewDeatails = () => {
     deatail?.totalRatting && deatail?.rattingCount
       ? deatail.totalRatting / deatail.rattingCount
       : 0;
-
+  if (lodding) return <Loadding></Loadding>;
   return (
     <>
       <div className="flex  justify-center items-center">

@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-
+import avatar from "../assets/istockphoto-1223671392-2048x2048.jpg";
 const Card = ({ pdata }) => {
   const avgRatting =
     pdata?.totalRatting && pdata?.rattingCount
@@ -8,11 +8,17 @@ const Card = ({ pdata }) => {
   return (
     <div className="  bg-[#fcfbfc] drop-shadow-2xl w-4/5  rounded-4xl p-6">
       <div>
-        <img className="rounded-full w-16 h-16" src={pdata.profileImg} alt="" />
+        <img
+          className="rounded-full w-16 h-16"
+          src={pdata?.profileImg || avatar}
+          alt="avt"
+        />
       </div>
 
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-2xl text-[#2f2e31] font-semibold ">{pdata.name}</h3>
+        <h3 className="text-2xl text-[#2f2e31] font-semibold ">
+          {pdata?.name}
+        </h3>
         <small className="">
           <strong>Avg Ratting:</strong>
           {avgRatting}
@@ -26,11 +32,11 @@ const Card = ({ pdata }) => {
       </div>
       <div className="my-7">
         <p className="font-semibold text-[16px]">
-          Expriance: <span>{pdata.expriance}</span>
+          Expriance: <span>{pdata?.expriance}</span>
         </p>
       </div>
       <Link
-        to={`/viewDeatails/${pdata._id}`}
+        to={`/viewDeatails/${pdata?._id}`}
         className="btn bg-success h-7 btn-success"
       >
         View Deatails

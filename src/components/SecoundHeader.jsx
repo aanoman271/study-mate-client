@@ -5,7 +5,7 @@ import useAuth from "../hook/useAuth";
 const SecoundHeader = () => {
   const { user } = useAuth();
   return (
-    <div className="max-w-7xl h-15 relative mx-auto flex justify-between ">
+    <div className="md:flex hidden max-w-7xl h-15 relative mx-auto justify-between ">
       <div className="">
         <p className="text-secondary bottom-0 absolute font-semibold">
           Connect with learners{" "}

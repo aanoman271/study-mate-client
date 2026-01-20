@@ -1,32 +1,39 @@
 @import "tailwindcss";
+@plugin "daisyui";
 
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-@plugin "daisyui" {
-}
-/* * {
-  font-family: "Poppins", sans-serif;
-} */
-* {
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap");
+
+:root {
   font-family: "Poppins", sans-serif;
 }
 
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
-  --color-primary: #424242;
+  --color-primary: #6d28d9;
   --color-secondary: #454545;
-  --primary: #6d28d9;
-  --primary-light: #8e24aa;
-  --primary-dark: #4c1d95;
-  --accent: #8e24aa;
-  --bg-light: #faf5ff;
-  --bg-dark: #1e1b4b;
-  --gradient: linear-gradient(135deg, #454545, #3949ab);
+  --color-base-100: #faf5ff;
+  --color-base-content: #1e1b4b;
 }
+
+@plugin "daisyui/theme" {
+  name: "dark";
+  --color-primary: #8e24aa;
+  --color-secondary: #d1d5db;
+  --color-base-100: #1e1b4b;
+  --color-base-content: #faf5ff;
+}
+
+* {
+  font-family: "Poppins", sans-serif;
+  @apply transition-colors duration-200;
+}
+
 .tittle {
-  @apply text-3xl font-bold text-center text-gray-800 mb-10;
+  @apply text-3xl font-bold text-center text-base-content mb-10;
 }
+
 .deatailsCard {
-  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.4);
+  @apply bg-base-100 p-6 rounded-xl;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }

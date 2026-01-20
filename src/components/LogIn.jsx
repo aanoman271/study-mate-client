@@ -40,7 +40,7 @@ const LogIn = () => {
           </h2>
           <div class="mb-5">
             <label
-              for="email-alternative"
+              htmlFor="email-alternative"
               class="block mb-2.5 text-sm font-medium text-heading"
             >
               Your email
